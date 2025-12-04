@@ -1,12 +1,16 @@
 :root {
-  --color-primary: #3498db;
-  --color-secondary: #2ecc71;
-  --color-background: #f5f5f5;
-  --color-text: #333333;
+  --color-primary: #212353;
+  --color-secondary: #ccac00;
+  --color-background: #e2ddb9;
+  --color-accent: #6468a6;
+  --color-card: #e8f1f2;
+  --color-border: #3a3a3a4d;
+  --font-family: "Poppins", sans-serif;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: var(--font-family);
 }
