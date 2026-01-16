@@ -1,0 +1,53 @@
+.testimonials {
+  padding: 40px 0;
+}
+.heading {
+  text-align: center;
+  font-size: 1.6rem;
+  color: var(--color-primary);
+  margin-bottom: 18px;
+}
+.list {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start;
+}
+.card {
+  width: 300px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 24px rgba(16, 24, 40, 0.06);
+}
+.card img {
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+  display: block;
+}
+.card figcaption {
+  padding: 12px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.9),
+    rgba(255, 255, 255, 0.95)
+  );
+}
+.role {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 0.9rem;
+  margin-top: 6px;
+}
+.cta {
+  text-align: center;
+  margin-top: 12px;
+  color: var(--color-secondary);
+  font-weight: 700;
+}
+
+@media (max-width: 980px) {
+  .list {
+    flex-direction: column;
+    align-items: center;
+  }
+}

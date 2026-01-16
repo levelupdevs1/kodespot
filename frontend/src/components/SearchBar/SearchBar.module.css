@@ -1,0 +1,25 @@
+.wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 24px;
+  background: var(--color-secondary);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+.input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  color: #111;
+}
+.input::placeholder {
+  color: rgba(0, 0, 0, 0.45);
+}
+.icon {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}

@@ -1,0 +1,21 @@
+.tabs {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+.tab {
+  background: transparent;
+  border: none;
+  color: rgba(0, 0, 0, 0.6);
+  padding: 6px 0;
+  cursor: pointer;
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+}
+.tab:hover {
+  color: var(--color-primary);
+}
+.tab.active {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-secondary);
+}

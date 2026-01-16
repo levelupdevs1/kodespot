@@ -1,0 +1,74 @@
+.root {
+  padding-top: 28px;
+  padding-bottom: 48px;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 520px;
+  gap: 36px;
+  align-items: center;
+  padding-top: 24px;
+}
+
+.colLeft {
+  max-width: 640px;
+}
+.title {
+  font-size: 2.25rem;
+  line-height: 1.05;
+  color: var(--color-primary);
+  margin-bottom: 12px;
+}
+.lead {
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 1.05rem;
+  margin-bottom: 20px;
+}
+
+.ctas {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.colRight {
+  display: flex;
+  justify-content: center;
+}
+.mockcard {
+  width: 100%;
+  max-width: 520px;
+  background: var(--color-card);
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(16, 24, 40, 0.06);
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+.mockHeader {
+  height: 56px;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
+}
+.mockBody {
+  height: 300px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.6), transparent);
+}
+
+@media (max-width: 980px) {
+  .hero {
+    grid-template-columns: 1fr 420px;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .colRight {
+    order: -1;
+  }
+  .title {
+    font-size: 1.6rem;
+  }
+}
