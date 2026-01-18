@@ -4,31 +4,28 @@ import Container from "../../components/layouts/Container/Container";
 import Button from "../../components/ui/Button/Button";
 import {
   ArrowLeft,
-  Play,
+  ChevronLeft,
+  ChevronRight,
+  ChevronDown,
+  ChevronUp,
+  X,
+  PlayCircle,
+  Check,
   CheckCircle,
-  Clock,
-  Star,
-  MessageCircle,
-  Bell,
-  BookOpen,
+  HelpCircle,
+  Zap,
 } from "lucide-react";
 import styles from "./CourseInProgress.module.css";
 
-// Mock course data - in real app, fetch from API
+// Mock course data
 const courseData = {
   id: 1,
   title: "Mastering Web Design & Development",
-  image: "/course1.jpg",
-  category: "Design",
-  author: "Mark Jones",
-  progress: 15,
-  rating: 5,
-  lessons: 12,
-  students: 10,
+  image: "/course1-large.jpg", // Placeholder
   description:
-    "'Mastering Web Design & Development' is an immersive program designed to equip learners with both the creative and technical skills necessary to build modern, responsive websites. Whether you are a beginner looking to break into the field or an experienced professional aiming to update your skills, this course offers an ideal balance between theory and practice. It introduces you to essential concepts such as layout, color theory, user experience (UX) design, as well as the technical aspects of HTML, CSS, JavaScript, and backend integrations.",
+    "The course is structured to transform your understanding of web design and development into a hands-on skillset that can be directly applied to real-world projects.",
   learnings: [
-    "Foundational learning",
+    "Foundational Learning",
     "Interactive and Practical",
     "Modern Tools and Techniques",
     "Project-Based Learning",
@@ -38,6 +35,7 @@ const courseData = {
     {
       id: 1,
       title: "Introduction to Web Design",
+      duration: "13m 20s",
       lessons: [
         {
           id: 1,
@@ -51,44 +49,85 @@ const courseData = {
           duration: "8:15",
           completed: true,
         },
-        {
-          id: 3,
-          title: "Basic Principles",
-          duration: "12:45",
-          completed: false,
-        },
       ],
     },
     {
       id: 2,
-      title: "HTML Fundamentals",
+      title: "Mastering CSS",
+      duration: "1h 31m 20s",
       lessons: [
-        { id: 4, title: "HTML Structure", duration: "10:20", completed: false },
+        {
+          id: 3,
+          title: "CSS Fundamentals",
+          duration: "12:45",
+          completed: true,
+        },
+        {
+          id: 4,
+          title: "Responsive Design",
+          duration: "10:20",
+          completed: false,
+        },
         {
           id: 5,
-          title: "Tags and Elements",
+          title: "Advanced Styling Techniques",
           duration: "15:30",
           completed: false,
         },
       ],
     },
-    // Add more sections as needed
+    {
+      id: 3,
+      title: "JavaScript for Interactive Web Experiences",
+      duration: "45m 10s",
+      lessons: [
+        { id: 6, title: "JS Basics", duration: "10:00", completed: false },
+        {
+          id: 7,
+          title: "DOM Manipulation",
+          duration: "15:00",
+          completed: false,
+        },
+      ],
+    },
   ],
 };
 
 const CourseInProgress = () => {
   const { id } = useParams();
-  const [currentLesson, setCurrentLesson] = useState(1); // Mock current lesson
+  const [currentLesson, setCurrentLesson] = useState(3); // Start with CSS Fundamentals active mock
   const [activeTab, setActiveTab] = useState("Overview");
+  const [openSections, setOpenSections] = useState({ 2: true }); // Mocking section 2 open by default
 
-  // In real app, find course by id
   const course = courseData;
 
-  const currentLessonData = course.curriculum
-    .flatMap((section) => section.lessons)
-    .find((lesson) => lesson.id === currentLesson);
+  // Flattened lessons list for navigation logic
+  const allLessons = course.curriculum.flatMap((section) => section.lessons);
+  const currentLessonIndex = allLessons.findIndex(
+    (l) => l.id === currentLesson
+  );
+  const currentLessonData = allLessons[currentLessonIndex];
 
-  const tabs = ["Overview", "QA", "Announcements", "Review"];
+  const handlePrev = () => {
+    if (currentLessonIndex > 0) {
+      setCurrentLesson(allLessons[currentLessonIndex - 1].id);
+    }
+  };
+
+  const handleNext = () => {
+    if (currentLessonIndex < allLessons.length - 1) {
+      setCurrentLesson(allLessons[currentLessonIndex + 1].id);
+    }
+  };
+
+  const toggleSection = (sectionId) => {
+    setOpenSections((prev) => ({
+      ...prev,
+      [sectionId]: !prev[sectionId],
+    }));
+  };
+
+  const tabs = ["Overview", "Q&A", "Announcements", "Reviews"];
 
   return (
     <main className={styles.root}>
@@ -96,23 +135,33 @@ const CourseInProgress = () => {
       <header className={styles.header}>
         <Container>
           <div className={styles.headerContent}>
-            <Link to="/my-learning" className={styles.backLink}>
-              <ArrowLeft size={20} />
-              Back to My Learning
-            </Link>
-            <div className={styles.courseInfo}>
-              <h1 className={styles.courseTitle}>{course.title}</h1>
-              <div className={styles.progressContainer}>
-                <div className={styles.progressBar}>
-                  <div
-                    className={styles.progressFill}
-                    style={{ width: `${course.progress}%` }}
-                  ></div>
-                </div>
-                <span className={styles.progressText}>
-                  {course.progress}% complete
-                </span>
-              </div>
+            <div className={styles.headerLeft}>
+              <Link to="/my-learning" className={styles.backLink}>
+                <ArrowLeft size={16} />
+                <span>{course.title}</span>
+              </Link>
+              <h1 className={styles.courseTitle}>
+                {currentLessonData?.title || "Lesson Title"}
+              </h1>
+            </div>
+
+            <div className={styles.headerControls}>
+              <button
+                className={styles.navButton}
+                onClick={handlePrev}
+                disabled={currentLessonIndex === 0}
+              >
+                <ChevronLeft size={20} />
+                Previous
+              </button>
+              <button
+                className={styles.navButton}
+                onClick={handleNext}
+                disabled={currentLessonIndex === allLessons.length - 1}
+              >
+                Next
+                <ChevronRight size={20} />
+              </button>
             </div>
           </div>
         </Container>
@@ -121,264 +170,158 @@ const CourseInProgress = () => {
       {/* Main Content */}
       <Container>
         <div className={styles.content}>
-          {/* Video Player */}
-          <div className={styles.videoSection}>
-            <div className={styles.videoPlayer}>
-              <video controls className={styles.video} poster={course.image}>
-                <source src="/sample-video.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            </div>
-            <div className={styles.videoInfo}>
-              <h2 className={styles.lessonTitle}>
-                {currentLessonData?.title || "Lesson Title"}
-              </h2>
-              <div className={styles.lessonMeta}>
-                <span>Lesson {currentLesson}</span>
-                <span>•</span>
-                <span>{currentLessonData?.duration || "0:00"}</span>
+          <div className={styles.mainColumn}>
+            {/* Video Player */}
+            <div className={styles.videoSection}>
+              <div className={styles.videoPlayer}>
+                {/* Mock Video Player Interface */}
+                <video
+                  controls
+                  className={styles.video}
+                  poster="/course-placeholder.jpg"
+                >
+                  <source src="/sample-video.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
               </div>
+            </div>
+
+            {/* Tabs & Content */}
+            <div className={styles.tabsSection}>
+              <div className={styles.tabs}>
+                {tabs.map((tab) => (
+                  <button
+                    key={tab}
+                    className={`${styles.tab} ${
+                      activeTab === tab ? styles.active : ""
+                    }`}
+                    onClick={() => setActiveTab(tab)}
+                  >
+                    {tab}
+                  </button>
+                ))}
+              </div>
+
+              {activeTab === "Overview" && (
+                <div className={styles.overview}>
+                  <h3 className={styles.courseDescriptionTitle}>
+                    Course description
+                  </h3>
+                  <p className={styles.descriptionText}>{course.description}</p>
+
+                  <h4 className={styles.learningsTitle}>
+                    What you'll learn from this course
+                  </h4>
+                  <ul className={styles.learningsList}>
+                    {course.learnings.map((item, idx) => (
+                      <li key={idx} className={styles.learningItem}>
+                        <Zap size={18} className={styles.learningIcon} />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className={styles.certificationSection}>
+                    <h4 className={styles.learningsTitle}>Certification</h4>
+                    <p className={styles.descriptionText}>
+                      Upon successful completion of the "Mastering Web Design &
+                      Development" course, you will be awarded an
+                      industry-recognized certification. This certification
+                      represents a significant milestone in your professional
+                      journey and serves as a portfolio-worthy testament to your
+                      expertise.
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {activeTab !== "Overview" && (
+                <div style={{ padding: "2rem 0", color: "#6b7280" }}>
+                  Content for {activeTab} would go here.
+                </div>
+              )}
             </div>
           </div>
 
           {/* Sidebar */}
           <aside className={styles.sidebar}>
-            <h3 className={styles.sidebarTitle}>Course Content</h3>
+            <div className={styles.sidebarHeader}>
+              <h3 className={styles.sidebarTitle}>Course content</h3>
+              <button className={styles.closeButton}>
+                <X size={20} />
+              </button>
+            </div>
+
             <div className={styles.curriculum}>
               {course.curriculum.map((section) => (
                 <div key={section.id} className={styles.section}>
-                  <h4 className={styles.sectionTitle}>{section.title}</h4>
-                  <ul className={styles.lessonsList}>
-                    {section.lessons.map((lesson) => (
-                      <li
-                        key={lesson.id}
-                        className={`${styles.lessonItem} ${
-                          lesson.id === currentLesson ? styles.active : ""
-                        }`}
-                        onClick={() => setCurrentLesson(lesson.id)}
-                      >
-                        <div className={styles.lessonContent}>
-                          {lesson.completed ? (
-                            <CheckCircle
+                  <button
+                    className={styles.sectionHeader}
+                    onClick={() => toggleSection(section.id)}
+                  >
+                    <div className={styles.sectionHeaderText}>
+                      <h4 className={styles.sectionTitle}>{section.title}</h4>
+                      {/* Optional: Add section progress summary if needed */}
+                    </div>
+                    {openSections[section.id] ? (
+                      <ChevronUp size={20} />
+                    ) : (
+                      <ChevronDown size={20} />
+                    )}
+                  </button>
+
+                  {openSections[section.id] && (
+                    <ul className={styles.lessonsList}>
+                      {section.lessons.map((lesson) => (
+                        <li
+                          key={lesson.id}
+                          className={`${styles.lessonItem} ${
+                            lesson.id === currentLesson ? styles.active : ""
+                          } ${lesson.completed ? styles.completed : ""}`}
+                          onClick={() => setCurrentLesson(lesson.id)}
+                        >
+                          <div className={styles.lessonCheckbox}>
+                            {lesson.completed && <Check size={12} />}
+                          </div>
+
+                          <div className={styles.lessonInfo}>
+                            <p className={styles.lessonTitle}>{lesson.title}</p>
+                          </div>
+
+                          {/* If current lesson, show play icon or something distinct */}
+                          {lesson.id === currentLesson && (
+                            <PlayCircle
                               size={16}
-                              className={styles.completedIcon}
+                              className={styles.playIconMini}
                             />
-                          ) : lesson.id === currentLesson ? (
-                            <Play size={16} className={styles.playIcon} />
-                          ) : (
-                            <Clock size={16} className={styles.clockIcon} />
                           )}
-                          <span className={styles.lessonTitle}>
-                            {lesson.title}
-                          </span>
-                        </div>
-                        <span className={styles.lessonDuration}>
-                          {lesson.duration}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               ))}
             </div>
           </aside>
         </div>
-
-        {/* Navigation */}
-        <div className={styles.navigation}>
-          <Button variant="ghost" size="lg">
-            Previous Lesson
-          </Button>
-          <Button variant="primary" size="lg">
-            Next Lesson
-          </Button>
-        </div>
       </Container>
 
-      {/* Tabs Section */}
-      <section className={styles.tabsSection}>
+      <section className={styles.ctaBox}>
         <Container>
-          <div className={styles.tabsContainer}>
-            <div className={styles.tabs}>
-              {tabs.map((tab) => (
-                <button
-                  key={tab}
-                  className={`${styles.tab} ${
-                    activeTab === tab ? styles.active : ""
-                  }`}
-                  onClick={() => setActiveTab(tab)}
-                >
-                  {tab === "QA" && <MessageCircle size={16} />}
-                  {tab === "Announcements" && <Bell size={16} />}
-                  {tab === "Review" && <Star size={16} />}
-                  {tab === "Overview" && <BookOpen size={16} />}
-                  <span>{tab}</span>
-                </button>
-              ))}
+          <div className={styles.cta}>
+            <div className={styles.ctaText}>
+              <h2>Teach the world online</h2>
+              <p>
+                Create an online video course, reach students across the globe,
+                and earn money
+              </p>
             </div>
-          </div>
-
-          <div className={styles.tabContent}>
-            {activeTab === "Overview" && (
-              <div className={styles.overview}>
-                <h3>Course Overview</h3>
-                <p>{course.description}</p>
-                <div className={styles.overviewGrid}>
-                  <div className={styles.overviewItem}>
-                    <h4>What You'll Learn</h4>
-                    <ul>
-                      {course.learnings.map((learning, index) => (
-                        <li key={index}>{learning}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className={styles.overviewItem}>
-                    <h4>Requirements</h4>
-                    <ul>
-                      <li>Basic computer skills</li>
-                      <li>Internet connection</li>
-                      <li>Passion for learning</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {activeTab === "QA" && (
-              <div className={styles.qa}>
-                <h3>Q&A</h3>
-                <div className={styles.qaList}>
-                  <div className={styles.qaItem}>
-                    <div className={styles.question}>
-                      <strong>
-                        Q: How long do I have access to the course?
-                      </strong>
-                    </div>
-                    <div className={styles.answer}>
-                      A: You have lifetime access to this course.
-                    </div>
-                  </div>
-                  <div className={styles.qaItem}>
-                    <div className={styles.question}>
-                      <strong>Q: Can I download the videos?</strong>
-                    </div>
-                    <div className={styles.answer}>
-                      A: Videos can be viewed online only for copyright reasons.
-                    </div>
-                  </div>
-                  <div className={styles.qaItem}>
-                    <div className={styles.question}>
-                      <strong>Q: Do I get a certificate?</strong>
-                    </div>
-                    <div className={styles.answer}>
-                      A: Yes, upon completion you'll receive a certificate.
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {activeTab === "Announcements" && (
-              <div className={styles.announcements}>
-                <h3>Announcements</h3>
-                <div className={styles.announcementList}>
-                  <div className={styles.announcement}>
-                    <div className={styles.announcementHeader}>
-                      <h4>Welcome to the course!</h4>
-                      <span>2 days ago</span>
-                    </div>
-                    <p>
-                      Welcome everyone! We're excited to have you here. Let's
-                      start learning!
-                    </p>
-                  </div>
-                  <div className={styles.announcement}>
-                    <div className={styles.announcementHeader}>
-                      <h4>Assignment Due</h4>
-                      <span>1 week ago</span>
-                    </div>
-                    <p>
-                      Don't forget to submit your first assignment by Friday.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {activeTab === "Review" && (
-              <div className={styles.reviews}>
-                <h3>Reviews</h3>
-                <div className={styles.reviewsSummary}>
-                  <div className={styles.rating}>
-                    <span className={styles.ratingNumber}>{course.rating}</span>
-                    <div className={styles.stars}>
-                      {"★".repeat(Math.round(course.rating))}
-                    </div>
-                    <span className={styles.reviewCount}>
-                      ({course.students} reviews)
-                    </span>
-                  </div>
-                </div>
-                <div className={styles.reviewsList}>
-                  <div className={styles.reviewItem}>
-                    <div className={styles.reviewAvatar}>
-                      <img src="/review-avatar-1.jpg" alt="Student" />
-                    </div>
-                    <div className={styles.reviewContent}>
-                      <div className={styles.reviewHeader}>
-                        <span className={styles.reviewAuthor}>
-                          Sarah Johnson
-                        </span>
-                        <span className={styles.reviewDate}>2 weeks ago</span>
-                      </div>
-                      <div className={styles.reviewRating}>
-                        <div className={styles.reviewStars}>★★★★★</div>
-                      </div>
-                      <p className={styles.reviewText}>
-                        Excellent course! Very comprehensive and
-                        well-structured. The instructor explains everything
-                        clearly.
-                      </p>
-                    </div>
-                  </div>
-                  <div className={styles.reviewItem}>
-                    <div className={styles.reviewAvatar}>
-                      <img src="/review-avatar-2.jpg" alt="Student" />
-                    </div>
-                    <div className={styles.reviewContent}>
-                      <div className={styles.reviewHeader}>
-                        <span className={styles.reviewAuthor}>Mike Chen</span>
-                        <span className={styles.reviewDate}>1 month ago</span>
-                      </div>
-                      <div className={styles.reviewRating}>
-                        <div className={styles.reviewStars}>★★★★☆</div>
-                      </div>
-                      <p className={styles.reviewText}>
-                        Great content, but some sections could be updated.
-                        Overall very satisfied with the learning experience.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
+            <Button variant="secondary" size="md">
+              Teach on KodeSpot
+            </Button>
           </div>
         </Container>
       </section>
-
-      {/* CTA Section */}
-      <Container>
-        <section className={styles.cta}>
-          <h2>Teach the world online</h2>
-          <p>
-            Create an online video course, reach students across the globe, and
-            earn money
-          </p>
-          <Button variant="primary" size="md">
-            Teach on KodeSpot
-          </Button>
-        </section>
-      </Container>
     </main>
   );
 };
