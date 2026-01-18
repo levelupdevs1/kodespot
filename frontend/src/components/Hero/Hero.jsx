@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Hero.module.css";
 import Button from "../ui/Button/Button";
+import HeroImage from "../../assets/hero_image_1.png";
 
 const Hero = ({ title, subtitle, ctaText }) => {
   return (
@@ -12,7 +13,7 @@ const Hero = ({ title, subtitle, ctaText }) => {
         />
         <p className={styles.subtitle}>{subtitle}</p>
         <div className={styles.actions}>
-          <Button variant="primary" size="lg" to="/signup">
+          <Button variant="secondary" size="lg" to="/signup">
             {ctaText || "Explore Courses"}
           </Button>
         </div>
@@ -20,9 +21,7 @@ const Hero = ({ title, subtitle, ctaText }) => {
 
       <div className={styles.right}>
         <div className={styles.visual} aria-hidden>
-          <div className={styles.circle}></div>
-          <div className={styles.decor}></div>
-          <img src="/hero-person.png" alt="Learner" className={styles.person} />
+          <img src={HeroImage} alt="Hero_image" className={styles.person} />
         </div>
       </div>
     </section>

@@ -28,16 +28,19 @@
 }
 .price {
   position: absolute;
-  right: 12px;
-  top: 12px;
+  right: 20px;
+  bottom: -20px;
   background: var(--color-secondary);
-  color: #111;
-  padding: 6px 10px;
+  color: white;
+  padding: 10px;
   border-radius: 999px;
-  font-weight: 700;
+  font-weight: 300;
 }
 .body {
-  padding: 14px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 .meta {
   color: rgba(0, 0, 0, 0.6);
@@ -46,25 +49,39 @@
   gap: 8px;
   align-items: center;
 }
+
 .title {
-  margin-top: 8px;
   font-size: 1.05rem;
   color: var(--color-primary);
 }
 .rating {
-  margin-top: 8px;
-  color: #f5b400;
-  font-weight: 700;
+  color: var(--color-secondary);
+  font-weight: 900;
+  font-size: 1.25rem;
 }
 .reviews {
-  color: rgba(0, 0, 0, 0.6);
-  font-weight: 500;
+  color: var(--color-primary);
+  font-weight: 300;
+  font-size: 0.875rem;
   margin-left: 8px;
 }
 .footer {
-  margin-top: 12px;
   display: flex;
-  gap: 12px;
-  color: rgba(0, 0, 0, 0.65);
-  font-size: 0.92rem;
+  justify-content: space-around;
+  align-items: center;
+  color: var(--color-primary);
+  font-size: 0.75rem;
+  border-top: 1px solid var(--color-border);
+  padding-top: 12px;
+}
+
+.lessons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.students {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./CourseCard.module.css";
+import { Book, User, Users } from "lucide-react";
 
 const CourseCard = ({
   id,
@@ -33,8 +34,14 @@ const CourseCard = ({
             <span className={styles.reviews}>(10 Reviews)</span>
           </div>
           <div className={styles.footer}>
-            <div className={styles.lessons}>{lessons || 12} Lessons</div>
-            <div className={styles.students}>{students || 20} Students</div>
+            <div className={styles.lessons}>
+              <Book size={15} />
+              {lessons || 12} Lessons
+            </div>
+            <div className={styles.students}>
+              <Users size={15} />
+              {students || 20} Students
+            </div>
           </div>
         </div>
       </article>

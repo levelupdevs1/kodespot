@@ -10,11 +10,10 @@
   align-items: center;
   justify-content: space-between;
 }
-.brand {
-  font-weight: 800;
-  color: var(--color-primary);
-  text-decoration: none;
-  letter-spacing: 0.06em;
+
+.logo img {
+  width: 130px;
+  height: auto;
 }
 .nav {
   display: flex;
@@ -28,7 +27,7 @@
 }
 .actions {
   display: flex;
-  gap: 12px;
+  gap: 20px;
   align-items: center;
 }
 .icon {
@@ -47,7 +46,7 @@
   padding: 8px 14px;
   border-radius: 18px;
   text-decoration: none;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 @media (max-width: 760px) {

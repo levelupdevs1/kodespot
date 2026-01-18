@@ -1,13 +1,14 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
+import Logo from "../../../assets/kodespot_logo.png";
+import { Search } from "lucide-react";
 
 const Navbar = () => {
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        <Link to="/" className={styles.brand}>
-          KODESPOT
+        <Link to="/" className={styles.logo}>
+          <img src={Logo} alt="logo" />
         </Link>
         <nav className={styles.nav}>
           <Link to="#">About</Link>
@@ -16,9 +17,7 @@ const Navbar = () => {
           <Link to="#">Blog</Link>
         </nav>
         <div className={styles.actions}>
-          <button className={styles.icon} aria-label="search">
-            🔍
-          </button>
+          <Search />
           <Link to="/signin" className={styles.signin}>
             Sign in
           </Link>
