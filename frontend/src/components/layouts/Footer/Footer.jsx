@@ -1,15 +1,18 @@
 import React from "react";
 import styles from "./Footer.module.css";
+import Logo from "../../../assets/kodespot_logo.png";
 
 const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.brand}>
-          <div className={styles.logo}>KODESPOT</div>
+          <img src={Logo} alt="kodespot_logo" className={styles.logo} />
           <p>
-            Innovation meets excellence — Building solutions that drive results.
+            Innovation meets excellence — <br /> Building solutions that drive
+            results.
           </p>
+          <p>&copy; {new Date().getFullYear()} Caravan. All right reserved.</p>
         </div>
 
         <div className={styles.cols}>

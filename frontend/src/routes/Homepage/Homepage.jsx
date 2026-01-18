@@ -8,6 +8,7 @@ import styles from "./Homepage.module.css";
 import Course1 from "../../assets/course1.jpg";
 import Course2 from "../../assets/course2.jpg";
 import Course3 from "../../assets/course3.jpg";
+import FooterImage from "../../assets/semi_footer_image.png";
 
 const Homepage = () => {
   const courses = [
@@ -93,16 +94,17 @@ const Homepage = () => {
         <FeaturesGrid />
       </Container>
 
-      <Container>
-        <Testimonials />
-      </Container>
+      <section className={styles.testimonials}>
+        <Container>
+          <Testimonials />
+        </Container>
+      </section>
 
       <Container>
         <section className={styles.promoSplit}>
           <div className={styles.promoLeft}>
             <div className={styles.promoVisual} aria-hidden>
-              <div className={styles.promoCircle}></div>
-              <img src="/promo-person.jpg" alt="student" />
+              <img src={FooterImage} alt="student" />
             </div>
           </div>
           <div className={styles.promoRight}>
@@ -113,7 +115,7 @@ const Homepage = () => {
               <li>Connect with effective methods</li>
               <li>Increase your learning skills</li>
             </ul>
-            <div style={{ marginTop: 12 }}>
+            <div>
               <a className={styles.ctaLink} href="#">
                 Explore Courses
               </a>
