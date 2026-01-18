@@ -5,12 +5,17 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import FilterTabs from "../../components/FilterTabs/FilterTabs";
 import { Search } from "lucide-react";
 import styles from "./MyLearning.module.css";
+import Course1 from "../../assets/course1.jpg";
+import Course2 from "../../assets/course2.jpg";
+import Course3 from "../../assets/course3.jpg";
+import HeroImage from "../../assets/semi_footer_image.png";
+import { Link } from "react-router-dom";
 
 const enrolledCourses = [
   {
     id: 1,
     title: "Mastering Web Design & Development",
-    image: "/course1.jpg",
+    image: Course1,
     category: "Design",
     author: "Mark Jones",
     progress: 15,
@@ -21,7 +26,7 @@ const enrolledCourses = [
   {
     id: 2,
     title: "JavaScript & Interactive Web Interfaces",
-    image: "/course2.jpg",
+    image: Course2,
     category: "Development",
     author: "Maria Garcia",
     progress: 0,
@@ -32,7 +37,7 @@ const enrolledCourses = [
   {
     id: 3,
     title: "Responsive Web Design Essentials",
-    image: "/course3.jpg",
+    image: Course3,
     category: "Design",
     author: "John Smith",
     progress: 25,
@@ -43,7 +48,7 @@ const enrolledCourses = [
   {
     id: 4,
     title: "Mastering Web Design & Development",
-    image: "/course1.jpg",
+    image: Course1,
     category: "Design",
     author: "Mark Jones",
     progress: 60,
@@ -54,7 +59,7 @@ const enrolledCourses = [
   {
     id: 5,
     title: "JavaScript & Interactive Web Interfaces",
-    image: "/course2.jpg",
+    image: Course2,
     category: "Development",
     author: "Maria Garcia",
     progress: 40,
@@ -65,7 +70,7 @@ const enrolledCourses = [
   {
     id: 6,
     title: "Responsive Web Design Essentials",
-    image: "/course3.jpg",
+    image: Course3,
     category: "Design",
     author: "John Smith",
     progress: 80,
@@ -100,7 +105,7 @@ const MyLearning = () => {
             </div>
             <div className={styles.heroRight}>
               <div className={styles.heroImage}>
-                <img src="/hero-person.jpg" alt="Learning" />
+                <img src={HeroImage} alt="Learning" />
               </div>
             </div>
           </div>
@@ -122,14 +127,7 @@ const MyLearning = () => {
             </div>
 
             <div className={styles.searchControl}>
-              <input
-                type="text"
-                placeholder="Search for courses"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className={styles.searchInput}
-              />
-              <Search size={20} className={styles.searchIcon} />
+              <SearchBar onSearch={setSearchQuery} />
             </div>
 
             <div className={styles.filterTabs}>
@@ -172,14 +170,12 @@ const MyLearning = () => {
                   </div>
 
                   <div className={styles.courseFooter}>
-                    <Button
-                      variant={course.progress > 0 ? "primary" : "secondary"}
-                      size="sm"
-                      fullWidth
+                    <Link
                       to={`/course/${course.id}/learn`}
+                      className={styles.footerLink}
                     >
                       {course.progress > 0 ? "Resume Course" : "Start Course"}
-                    </Button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -207,18 +203,28 @@ const MyLearning = () => {
       </section>
 
       {/* CTA Section */}
-      <Container>
-        <section className={styles.cta}>
-          <h2>Teach the world online</h2>
-          <p>
-            Create an online video course, reach students across the globe, and
-            earn money
-          </p>
-          <Button variant="primary" size="md">
-            Teach on KodeSpot
-          </Button>
-        </section>
-      </Container>
+      <section className={styles.ctaBox}>
+        <Container>
+          <div className={styles.cta}>
+            <div className={styles.ctaText}>
+              <h2>Teach the world online</h2>
+              <p>
+                Create an online video course, reach students across the globe,
+                and earn money
+              </p>
+            </div>
+            <div>
+              <Button
+                variant="secondary"
+                size="md"
+                className={styles.ctaButton}
+              >
+                Teach on KodeSpot
+              </Button>
+            </div>
+          </div>
+        </Container>
+      </section>
     </main>
   );
 };

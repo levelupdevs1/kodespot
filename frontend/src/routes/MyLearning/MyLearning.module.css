@@ -61,10 +61,12 @@
 /* Courses Section */
 .coursesSection {
   padding: 3rem 0;
+  background-color: white;
 }
 
 .controlsContainer {
   display: flex;
+  justify-content: space-between;
   gap: 1.5rem;
   margin-bottom: 3rem;
   align-items: flex-end;
@@ -73,7 +75,8 @@
 
 .filterControl {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
   gap: 0.5rem;
 }
 
@@ -110,36 +113,6 @@
   max-width: 400px;
 }
 
-.searchInput {
-  width: 100%;
-  padding: 0.75rem 1rem 0.75rem 2.5rem;
-  border: 1px solid #d4dce6;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  color: #6b7280;
-  background-color: #f8f9fa;
-  transition: all 0.2s ease;
-}
-
-.searchInput::placeholder {
-  color: #d1d5db;
-}
-
-.searchInput:focus {
-  outline: none;
-  border-color: var(--color-secondary);
-  background-color: white;
-}
-
-.searchIcon {
-  position: absolute;
-  left: 0.75rem;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #9ca3af;
-  pointer-events: none;
-}
-
 .filterTabs {
   display: flex;
   gap: 0;
@@ -167,10 +140,10 @@
   box-shadow: 0 8px 24px rgba(16, 24, 40, 0.08);
 }
 
-.inProgress {
+/* .inProgress {
   border-color: var(--color-primary);
   box-shadow: 0 2px 8px rgba(31, 35, 72, 0.1);
-}
+} */
 
 .courseImage {
   width: 100%;
@@ -233,14 +206,14 @@
 .progressBar {
   width: 100%;
   height: 6px;
-  background-color: #e8eef2;
+  background-color: #f5eed4;
   border-radius: 3px;
   overflow: hidden;
 }
 
 .progressFill {
   height: 100%;
-  background: var(--color-primary);
+  background: var(--color-secondary);
   border-radius: 3px;
   transition: width 0.3s ease;
 }
@@ -256,11 +229,15 @@
   border-top: 1px solid #e8eef2;
 }
 
+.courseFooter .footerLink {
+  text-decoration: none;
+  color: var(--color-secondary);
+}
+
 /* Pagination */
 .paginationContainer {
   display: flex;
   justify-content: center;
-  padding: 2rem 0;
 }
 
 .pagination {
@@ -297,30 +274,30 @@
 }
 
 /* CTA Section */
+.ctaBox {
+  background: white;
+  padding: 40px 0;
+}
+
 .cta {
-  padding: 3rem;
-  background-color: var(--color-primary);
-  border-radius: 12px;
+  background: var(--color-primary);
   color: white;
-  text-align: center;
+  padding: 32px;
+  border-radius: 12px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  margin: 3rem 0;
+  justify-content: space-between;
 }
-
-.cta h2 {
-  font-size: 1.75rem;
-  font-weight: 700;
-  margin: 0;
+.ctaText {
+  text-align: left;
 }
-
-.cta p {
+.ctaText h2 {
+  margin-bottom: 8px;
   font-size: 1rem;
-  color: rgba(255, 255, 255, 0.9);
-  margin: 0;
-  max-width: 500px;
+}
+.ctaText p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.75rem;
 }
 
 /* Responsive */
