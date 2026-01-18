@@ -10,6 +10,7 @@ import Course2 from "../../assets/course2.jpg";
 import Course3 from "../../assets/course3.jpg";
 import HeroImage from "../../assets/semi_footer_image.png";
 import { Link } from "react-router-dom";
+import Cta from "../../components/Cta/Cta";
 
 const enrolledCourses = [
   {
@@ -204,26 +205,7 @@ const MyLearning = () => {
 
       {/* CTA Section */}
       <section className={styles.ctaBox}>
-        <Container>
-          <div className={styles.cta}>
-            <div className={styles.ctaText}>
-              <h2>Teach the world online</h2>
-              <p>
-                Create an online video course, reach students across the globe,
-                and earn money
-              </p>
-            </div>
-            <div>
-              <Button
-                variant="secondary"
-                size="md"
-                className={styles.ctaButton}
-              >
-                Teach on KodeSpot
-              </Button>
-            </div>
-          </div>
-        </Container>
+        <Cta />
       </section>
     </main>
   );

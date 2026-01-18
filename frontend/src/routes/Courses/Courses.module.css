@@ -34,27 +34,6 @@
   padding: 40px 0;
 }
 
-.cta {
-  background: var(--color-primary);
-  color: white;
-  padding: 32px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.ctaText {
-  text-align: left;
-}
-.ctaText h2 {
-  margin-bottom: 8px;
-  font-size: 1rem;
-}
-.ctaText p {
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 0.75rem;
-}
-
 @media (max-width: 980px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);

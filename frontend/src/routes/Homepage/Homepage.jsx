@@ -75,7 +75,8 @@ const Homepage = () => {
           <div className={styles.courseList}>
             {courses.map((course) => (
               <CourseCard
-                key={course.title}
+                key={course.id}
+                id={course.id}
                 title={course.title}
                 image={course.image}
                 category={course.category}

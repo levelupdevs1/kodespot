@@ -14,8 +14,10 @@ import {
   CheckCircle,
   HelpCircle,
   Zap,
+  CircleArrowRight,
 } from "lucide-react";
 import styles from "./CourseInProgress.module.css";
+import Cta from "../../components/Cta/Cta";
 
 // Mock course data
 const courseData = {
@@ -215,7 +217,10 @@ const CourseInProgress = () => {
                   <ul className={styles.learningsList}>
                     {course.learnings.map((item, idx) => (
                       <li key={idx} className={styles.learningItem}>
-                        <Zap size={18} className={styles.learningIcon} />
+                        <CircleArrowRight
+                          size={18}
+                          className={styles.learningIcon}
+                        />
                         {item}
                       </li>
                     ))}
@@ -307,20 +312,7 @@ const CourseInProgress = () => {
       </Container>
 
       <section className={styles.ctaBox}>
-        <Container>
-          <div className={styles.cta}>
-            <div className={styles.ctaText}>
-              <h2>Teach the world online</h2>
-              <p>
-                Create an online video course, reach students across the globe,
-                and earn money
-              </p>
-            </div>
-            <Button variant="secondary" size="md">
-              Teach on KodeSpot
-            </Button>
-          </div>
-        </Container>
+        <Cta />
       </section>
     </main>
   );
