@@ -5,13 +5,14 @@ import SocialButton from "../../components/Auth/SocialButton";
 import Input from "../../components/Auth/Input";
 import Checkbox from "../../components/Auth/Checkbox";
 import Button from "../../components/ui/Button/Button";
+import Image from "../../assets/girl_studying.jpg";
 
 const Signin = () => {
   return (
     <main className={styles.root}>
       <div className={styles.grid}>
         <div className={styles.left}>
-          <img src="/signin-left.jpg" alt="student working" />
+          <img src={Image} alt="student working" />
         </div>
 
         <div className={styles.right}>

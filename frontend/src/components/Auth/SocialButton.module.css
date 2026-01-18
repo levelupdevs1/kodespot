@@ -13,4 +13,6 @@
   align-items: center;
   justify-content: center;
   font-weight: 700;
+  background-color: white;
+  border-radius: 50%;
 }

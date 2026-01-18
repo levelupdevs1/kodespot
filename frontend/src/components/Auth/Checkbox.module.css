@@ -1,9 +1,7 @@
 .wrap {
   display: flex;
   gap: 10px;
-  align-items: flex-start;
-  margin-top: 8px;
-  margin-bottom: 14px;
+  align-items: center;
 }
 .input {
   width: 18px;
@@ -13,4 +11,8 @@
 .label {
   color: rgba(0, 0, 0, 0.7);
   font-size: 0.95rem;
+}
+
+a {
+  color: var(--color-secondary);
 }
