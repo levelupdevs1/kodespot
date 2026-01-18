@@ -13,6 +13,6 @@
   font-size: 0.95rem;
 }
 
-a {
+.label a {
   color: var(--color-secondary);
 }

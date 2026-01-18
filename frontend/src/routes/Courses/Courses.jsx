@@ -7,12 +7,16 @@ import CourseCard from "../../components/CourseCard/CourseCard";
 import Pagination from "../../components/Pagination/Pagination";
 import Button from "../../components/ui/Button/Button";
 import styles from "./Courses.module.css";
+import Course1 from "../../assets/course1.jpg";
+import Course2 from "../../assets/course2.jpg";
+import Course3 from "../../assets/course3.jpg";
+import HeroImage from "../../assets/hero_image_2.png";
 
 const coursesData = [
   {
     id: 1,
     title: "Mastering Web Design & Development",
-    image: "/course1.jpg",
+    image: Course1,
     category: "Design",
     author: "Mark Jones",
     price: 0,
@@ -23,7 +27,7 @@ const coursesData = [
   {
     id: 2,
     title: "JavaScript & Interactive Web Interfaces",
-    image: "/course2.jpg",
+    image: Course2,
     category: "Development",
     author: "Maria Garcia",
     price: 100,
@@ -34,7 +38,7 @@ const coursesData = [
   {
     id: 3,
     title: "Responsive Web Design Essentials",
-    image: "/course3.jpg",
+    image: Course3,
     category: "Design",
     author: "John Smith",
     price: 150,
@@ -45,7 +49,7 @@ const coursesData = [
   {
     id: 4,
     title: "Mastering Web Design & Development",
-    image: "/course1.jpg",
+    image: Course1,
     category: "Design",
     author: "Mark Jones",
     price: 0,
@@ -56,7 +60,7 @@ const coursesData = [
   {
     id: 5,
     title: "JavaScript & Interactive Web Interfaces",
-    image: "/course2.jpg",
+    image: Course2,
     category: "Development",
     author: "Maria Garcia",
     price: 100,
@@ -67,7 +71,7 @@ const coursesData = [
   {
     id: 6,
     title: "Responsive Web Design Essentials",
-    image: "/course3.jpg",
+    image: Course3,
     category: "Design",
     author: "John Smith",
     price: 150,
@@ -86,12 +90,16 @@ const Courses = () => {
       ? coursesData
       : coursesData.filter((c) => c.category === activeFilter);
 
-  const heroTitle = `Our online courses<br/><strong>Best eLearning Technical Training Classes.</strong>`;
-
   return (
     <main className={styles.root}>
       <Container>
-        <Hero title={heroTitle} subtitle="" />
+        <Hero
+          pretitle={"Our online courses"}
+          title={`Best eLearning <strong>Technical Training</strong> Classes.`}
+          subtitle=""
+          ctaText={""}
+          image={HeroImage}
+        />
       </Container>
 
       <section className={styles.explore}>
@@ -99,9 +107,8 @@ const Courses = () => {
           <div className={styles.header}>
             <h3>Popular courses</h3>
             <SearchBar />
+            <FilterTabs active={activeFilter} onFilter={setActiveFilter} />
           </div>
-
-          <FilterTabs active={activeFilter} onFilter={setActiveFilter} />
 
           <div className={styles.grid}>
             {filtered.map((course) => (
@@ -117,18 +124,28 @@ const Courses = () => {
         </Container>
       </section>
 
-      <Container>
-        <section className={styles.cta}>
-          <h2>Teach the world online</h2>
-          <p>
-            Create an online video course, reach students across the globe, and
-            earn money
-          </p>
-          <Button variant="primary" size="md">
-            Teach on KodeSpot
-          </Button>
-        </section>
-      </Container>
+      <section className={styles.ctaBox}>
+        <Container>
+          <div className={styles.cta}>
+            <div className={styles.ctaText}>
+              <h2>Teach the world online</h2>
+              <p>
+                Create an online video course, reach students across the globe,
+                and earn money
+              </p>
+            </div>
+            <div>
+              <Button
+                variant="secondary"
+                size="md"
+                className={styles.ctaButton}
+              >
+                Teach on KodeSpot
+              </Button>
+            </div>
+          </div>
+        </Container>
+      </section>
     </main>
   );
 };

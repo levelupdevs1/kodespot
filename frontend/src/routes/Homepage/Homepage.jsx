@@ -9,6 +9,7 @@ import Course1 from "../../assets/course1.jpg";
 import Course2 from "../../assets/course2.jpg";
 import Course3 from "../../assets/course3.jpg";
 import FooterImage from "../../assets/semi_footer_image.png";
+import HeroImage from "../../assets/hero_image_1.png";
 
 const Homepage = () => {
   const courses = [
@@ -56,6 +57,7 @@ const Homepage = () => {
             "Learn cutting-edge skills in coding, data science, AI, and more from industry experts."
           }
           ctaText="Explore Courses"
+          image={HeroImage}
         />
       </Container>
 

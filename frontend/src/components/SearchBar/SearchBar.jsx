@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./SearchBar.module.css";
+import { Search } from "lucide-react";
 
 const SearchBar = ({ onSearch }) => {
   const [query, setQuery] = useState("");
@@ -19,7 +20,7 @@ const SearchBar = ({ onSearch }) => {
         onChange={handleChange}
       />
       <button className={styles.icon} aria-label="search">
-        🔍
+        <Search size={16} />
       </button>
     </div>
   );

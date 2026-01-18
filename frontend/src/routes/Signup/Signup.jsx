@@ -56,7 +56,7 @@ const Signup = () => {
               </div>
 
               <div className={styles.login}>
-                Already have an account? <a href="#">Log In</a>
+                Already have an account? <a href="/signin">Log In</a>
               </div>
             </form>
           </Container>
